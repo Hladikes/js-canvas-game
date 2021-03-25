@@ -1,6 +1,10 @@
+// Utility script for reusable and general use functions
+
+// Get random item from an array
 export function getRandomItem(arr) {
   return arr[Math.floor(Math.random() * arr.length)]
 }
+
 
 export function getRandom(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1))
