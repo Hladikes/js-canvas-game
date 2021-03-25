@@ -1,11 +1,12 @@
 export class Sound {
   
-  constructor(src, volume = 1) {
-    this.sound = document.createElement("audio");
+  constructor(src, volume = 1, loop = false) {
+    this.sound = document.createElement('audio');
     this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
+    this.sound.setAttribute('preload', 'auto');
+    this.sound.setAttribute('controls', 'none');
+    if (loop) this.sound.setAttribute('loop', 'none');
+    this.sound.style.display = 'none';
     this.sound.volume = volume
     document.body.appendChild(this.sound);
   }

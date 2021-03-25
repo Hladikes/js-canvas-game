@@ -11,14 +11,12 @@ ctx.imageSmoothingEnabled = false;
 import Game from './game.js'
 const game = new Game(config)
 
-// console.log('config', config)
-
 import FpsCounter from './fpsCounter.js'
 const fpsCounter = new FpsCounter()
 
 import { Sound, SoundCollection } from './sound.js'
 const music = new Sound(SoundCollection.MUSIC, 0.4)
-const wind = new Sound(SoundCollection.WIND, 0.02)
+const wind = new Sound(SoundCollection.WIND, 0.03, true)
 wind.play()
 music.play()
 
@@ -29,7 +27,6 @@ function loop() {
 
   game.update()
   game.draw(ctx)
-
   fpsCounter.draw(ctx)
 
   requestAnimationFrame(loop)
