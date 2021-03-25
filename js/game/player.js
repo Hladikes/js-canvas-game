@@ -2,6 +2,8 @@ import Door from './door.js'
 import { MovingRectangle, Direction } from '../movingRectangle.js';
 import { SpriteCollection } from '../sprite.js'
 import { keyboard } from '../keyboard.js'
+import { Sound, SoundCollection } from '../sound.js'
+import { getRandomItem } from '../util.js'
 
 export default class Player extends MovingRectangle {
 
@@ -14,6 +16,17 @@ export default class Player extends MovingRectangle {
     this.speed = 5
     // Previous direction x
     this.pdx = 1
+
+    this.footstepSounds = [
+      new Sound(SoundCollection.FOOTSTEP_1, 0.075),
+      new Sound(SoundCollection.FOOTSTEP_2, 0.075)
+    ]
+
+    setInterval(() => {
+      if (this.dx !== 0 || this.dy !== 0) {
+        getRandomItem(this.footstepSounds).play()
+      }
+    }, 400)
   }
 
   update(obstacles) {

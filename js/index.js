@@ -11,24 +11,26 @@ ctx.imageSmoothingEnabled = false;
 import Game from './game.js'
 const game = new Game(config)
 
-console.log('config', config)
+// console.log('config', config)
 
-let t1, t2
-let measuredFps = 0
-setInterval(() => { measuredFps = Math.round(1000/t2) }, 250)
+import FpsCounter from './fpsCounter.js'
+const fpsCounter = new FpsCounter()
+
+import { Sound, SoundCollection } from './sound.js'
+const music = new Sound(SoundCollection.MUSIC, 0.4)
+const wind = new Sound(SoundCollection.WIND, 0.02)
+wind.play()
+music.play()
 
 function loop() {
-  t2 = +new Date() - t1;
-  t1 = +new Date()
+  fpsCounter.timestamp()
 
   ctx.clearRect(0, 0, config.GAME_WIDTH, config.GAME_HEIGHT)
 
   game.update()
   game.draw(ctx)
 
-  ctx.font = "24px monospace";
-  ctx.fillStyle = 'yellow'
-  ctx.fillText(`${measuredFps} fps`, 0 + 64, 0 + 32);
+  fpsCounter.draw(ctx)
 
   requestAnimationFrame(loop)
 }

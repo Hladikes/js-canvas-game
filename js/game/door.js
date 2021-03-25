@@ -1,6 +1,6 @@
 import { Rectangle } from '../rectangle.js';
 import { SpriteCollection } from '../sprite.js'
-
+import { Sound, SoundCollection } from '../sound.js'
 import { getRandomItem } from '../util.js'
 
 export default class Floor extends Rectangle {
@@ -10,14 +10,22 @@ export default class Floor extends Rectangle {
 
     this.opened = false
     this._doorFloor = getRandomItem(SpriteCollection.FLOOR)
+    this.soundOpen = new Sound(SoundCollection.DOOR_OPEN, 0.2)
+    this.soundClose = new Sound(SoundCollection.DOOR_CLOSE, 0.2)
   }
 
   open() {
-    this.opened = true
+    if (!this.opened) {
+      this.opened = true
+      this.soundOpen.play()
+    }
   }
 
   close() {
-    this.opened = false
+    if (this.opened) {
+      this.opened = false
+      this.soundClose.play()
+    }
   }
   
   onCollide(target) {
