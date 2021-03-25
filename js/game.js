@@ -1,5 +1,5 @@
 import Player from './game/player.js'
-import { level1 } from './levels.js'
+import { level1, level2 } from './levels.js'
 
 export default class Game {
 
@@ -7,20 +7,33 @@ export default class Game {
     Object.assign(this, config)
 
     this.player = new Player(this, this.BLOCK_SIZE, this.BLOCK_SIZE)
+    this.levelIndex = 0
+    this.levels = [
+      level1(this),
+      level2(this)
+    ]
+  }
 
-    this.gameObjects = level1(this)
+  setLevel(index) {
+    if (index >= 0 && index < this.levels.length) {
+      this.levelIndex = index
+    }
+  }
+
+  getCurrentLevel() {
+    return this.levels[this.levelIndex]
   }
 
   update() {
-    this.gameObjects.forEach(gameObject => {
+    this.levels[this.levelIndex].forEach(gameObject => {
       gameObject.update()
     })
 
-    this.player.update(this.gameObjects)
+    this.player.update(this.levels[this.levelIndex])
   }
 
   draw(ctx) {
-    this.gameObjects.forEach(gameObject => {
+    this.levels[this.levelIndex].forEach(gameObject => {
       gameObject.draw(ctx)
     })
 

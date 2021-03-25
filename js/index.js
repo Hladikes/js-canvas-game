@@ -1,6 +1,6 @@
 import { generateConfig } from './config.js'
 
-const config = generateConfig(64, 1, [ 16, 10 ])
+const config = generateConfig(64, 1, [ 20, 12 ])
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d', { alpha: false })
 
@@ -15,7 +15,7 @@ import FpsCounter from './fpsCounter.js'
 const fpsCounter = new FpsCounter()
 
 import { Sound, SoundCollection } from './sound.js'
-const music = new Sound(SoundCollection.MUSIC, 0.4)
+const music = new Sound(SoundCollection.MUSIC, 0.2, true)
 const wind = new Sound(SoundCollection.WIND, 0.03, true)
 wind.play()
 music.play()

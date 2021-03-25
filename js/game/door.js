@@ -8,7 +8,7 @@ export default class Floor extends Rectangle {
   constructor(game, posX, posY) {
     super(game.BLOCK_SIZE, game.BLOCK_SIZE, posX, posY, SpriteCollection.DOOR_LEFT)
 
-    this.opened = false
+    this.opened = true
     this._doorFloor = getRandomItem(SpriteCollection.FLOOR)
     this.soundOpen = new Sound(SoundCollection.DOOR_OPEN, 0.2)
     this.soundClose = new Sound(SoundCollection.DOOR_CLOSE, 0.2)

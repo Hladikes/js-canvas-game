@@ -13,7 +13,7 @@ export default class Player extends MovingRectangle {
     super(size, size, posX, posY, SpriteCollection.HERO)
     
     this.game = game
-    this.speed = 5
+    this.speed = 4
     // Previous direction x
     this.pdx = 1
 
@@ -22,11 +22,11 @@ export default class Player extends MovingRectangle {
       new Sound(SoundCollection.FOOTSTEP_2, 0.075)
     ]
 
-    setInterval(() => {
+    this._soundInterval = setInterval(() => {
       if (this.dx !== 0 || this.dy !== 0) {
         getRandomItem(this.footstepSounds).play()
       }
-    }, 400)
+    }, 300)
   }
 
   update(obstacles) {
@@ -44,7 +44,7 @@ export default class Player extends MovingRectangle {
     else direction = Direction.STAY
 
     if (keyboard.k) {
-      this.game.gameObjects.forEach(obj => {
+      this.game.getCurrentLevel().forEach(obj => {
         if (obj.constructor === Door) {
           obj.close()
         }
@@ -52,7 +52,7 @@ export default class Player extends MovingRectangle {
     }
 
     if (keyboard.o) {
-      this.game.gameObjects.forEach(obj => {
+      this.game.getCurrentLevel().forEach(obj => {
         if (obj.constructor === Door) {
           obj.open()
         }

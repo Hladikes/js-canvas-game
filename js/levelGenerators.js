@@ -58,7 +58,11 @@ export function generateEmptyLevel(game, cb) {
         }
       }
 
-      objects.push(result)
+      if (Array.isArray(result)) {
+        result.forEach(r => objects.push(r))
+      } else {
+        objects.push(result)
+      }
     })
   })
 
