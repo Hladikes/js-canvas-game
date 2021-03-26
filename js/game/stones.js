@@ -4,8 +4,8 @@ import { SpriteCollection } from '../sprite.js'
 
 export default class Stones extends Rectangle {
   
-  constructor(game, posX, posY) {
-    super(game.BLOCK_SIZE, game.BLOCK_SIZE, posX, posY, [
+  constructor(game, position) {
+    super(game.BLOCK_SIZE, game.BLOCK_SIZE, position, [
       getRandomItem(SpriteCollection.FLOOR),
       getRandomItem(SpriteCollection.STONES),
     ])

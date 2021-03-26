@@ -2,17 +2,15 @@ import { Rectangle } from '../rectangle.js';
 
 export default class Teleport extends Rectangle {
 
-  constructor(game, width, height, posX, posY, target, tposX, tposY) {
-    super(width, height, posX, posY, 'transparent')
+  constructor(game, width, height, position, target, teleportPosition) {
+    super(width, height, position, 'transparent')
     this.game = game
     this.target = target
-    this.tposX = tposX
-    this.tposY = tposY
+    this.teleportPosition = teleportPosition
   }
 
   onCollide(collider) {
-    collider.posX = this.tposX
-    collider.posY = this.tposY
+    Object.assign(collider.position, this.teleportPosition)
     this.game.setLevel(this.target)
   }
 

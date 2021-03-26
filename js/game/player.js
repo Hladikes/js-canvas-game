@@ -7,13 +7,13 @@ import { getRandomItem } from '../util.js'
 
 export default class Player extends MovingRectangle {
 
-  constructor(game, posX, posY) {
+  constructor(game, position) {
     
     const size = game.BLOCK_SIZE * 0.7
-    super(size, size, posX, posY, SpriteCollection.HERO)
+    super(size, size, position, SpriteCollection.HERO)
     
     this.game = game
-    this.speed = 4
+    this.speed = 5
     // Previous direction x
     this.pdx = 1
 

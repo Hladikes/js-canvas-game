@@ -1,13 +1,13 @@
 import { Sprite } from './sprite.js'
 import { generateId } from './util.js'
+import { Position } from './position.js'
 
 export class Rectangle {
 
-  constructor(width = 16, height = 16, posX = 0, posY = 0, background = 'transparent') {
+  constructor(width = 16, height = 16, position = new Position(0, 0), background = 'transparent') {
     this.width = width 
     this.height = height 
-    this.posX = posX 
-    this.posY = posY 
+    this.position = position
     this.background = background
     this.defaultBackground = background
     this.state = {}
@@ -18,10 +18,10 @@ export class Rectangle {
 
   checkCollision(target) {
     const isColliding = (
-      this.posX + this.width >= target.posX &&
-      this.posX < target.posX + target.width &&
-      this.posY + this.height >= target.posY &&
-      this.posY < target.posY + target.height
+      this.position.x + this.width >= target.position.x &&
+      this.position.x < target.position.x + target.width &&
+      this.position.y + this.height >= target.position.y &&
+      this.position.y < target.position.y + target.height
     )
 
     if (isColliding) target.onCollide(this)
@@ -35,22 +35,22 @@ export class Rectangle {
     if (this._debug) {
       ctx.font = "16px monospace";
       ctx.fillStyle = 'cyan'
-      ctx.fillText(`${JSON.stringify(this.state)}`, this.posX, this.posY - 16);
+      ctx.fillText(`${JSON.stringify(this.state)}`, this.position.x, this.position.y - 16);
     }
 
     switch (this.background.constructor) {
       case String: 
         ctx.fillStyle = this.background
-        ctx.fillRect(this.posX, this.posY, this.width, this.height)
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
         break;
 
       case Sprite: 
-        this.background.draw(ctx, this.posX, this.posY, this.width, this.height)
+        this.background.draw(ctx, this.position.x, this.position.y, this.width, this.height)
         break;
 
       case Array: 
         this.background.forEach(sprite => {
-          sprite.draw(ctx, this.posX, this.posY, this.width, this.height)
+          sprite.draw(ctx, this.position.x, this.position.y, this.width, this.height)
         })
         break;
     }

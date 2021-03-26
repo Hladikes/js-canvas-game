@@ -2,8 +2,8 @@ import { Rectangle } from './rectangle.js';
 
 export class MovingRectangle extends Rectangle {
 
-  constructor(width, height, posX, posY, background) {
-    super(width, height, posX, posY, background)
+  constructor(width, height, position, background) {
+    super(width, height, position, background)
 
     this.speed = 5
     this.dx = 0
@@ -20,8 +20,8 @@ export class MovingRectangle extends Rectangle {
   }
 
   move(n = this.speed) {
-    this.posX += n * this.dx
-    this.posY += n * this.dy
+    this.position.x += n * this.dx
+    this.position.y += n * this.dy
   }
 
 }

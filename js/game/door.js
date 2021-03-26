@@ -5,8 +5,8 @@ import { getRandomItem } from '../util.js'
 
 export default class Floor extends Rectangle {
   
-  constructor(game, posX, posY) {
-    super(game.BLOCK_SIZE, game.BLOCK_SIZE, posX, posY, SpriteCollection.DOOR_LEFT)
+  constructor(game, position) {
+    super(game.BLOCK_SIZE, game.BLOCK_SIZE, position, SpriteCollection.DOOR_LEFT)
 
     this.opened = true
     this._doorFloor = getRandomItem(SpriteCollection.FLOOR)

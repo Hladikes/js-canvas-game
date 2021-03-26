@@ -3,12 +3,12 @@ import { getRandomItem } from '../util.js';
 
 export default class Wall extends Rectangle {
   
-  constructor(game, posX, posY, face) {
+  constructor(game, position, face) {
     if (face.constructor === Array) {
       face = getRandomItem(face)
     }
 
-    super(game.BLOCK_SIZE, game.BLOCK_SIZE, posX, posY, face)
+    super(game.BLOCK_SIZE, game.BLOCK_SIZE, position, face)
     this.collidable = true
   }
 

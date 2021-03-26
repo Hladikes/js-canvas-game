@@ -1,5 +1,6 @@
 import Floor from './game/floor.js'
 import Wall from './game/wall.js'
+import { Position } from './position.js'
 import { SpriteCollection } from './sprite.js'
 
 function generateEmptyGrid(width, height, blockSize) {
@@ -9,10 +10,7 @@ function generateEmptyGrid(width, height, blockSize) {
     const row = []
 
     for (let w = 0; w < width; w++) {
-      row.push({
-        posX: w * blockSize,
-        posY: h * blockSize,
-      })
+      row.push(new Position(w * blockSize, h * blockSize))
     }
 
     grid.push(row)
@@ -24,10 +22,10 @@ function generateEmptyGrid(width, height, blockSize) {
 export function generateEmptyLevel(game, cb) {
   const objects = []
   const grid = generateEmptyGrid(game.TILES_WIDTH, game.TILES_HEIGHT, game.BLOCK_SIZE)
-
+  
   grid.forEach((row, y) => {
     row.forEach((obj, x) => {
-      let result = new Floor(game, obj.posX, obj.posY)
+      let result = new Floor(game, obj)
 
       if (x === 0 || y === 0 || x === game.TILES_WIDTH - 1 || y === game.TILES_HEIGHT - 1) {
         let face
@@ -46,13 +44,13 @@ export function generateEmptyLevel(game, cb) {
           face = SpriteCollection.WALL_TOP
         }
 
-        result = new Wall(game, obj.posX, obj.posY, face)
+        result = new Wall(game, obj, face)
       } else {
         objects.push(result)
       }
 
       if (cb) {
-        const gobj = cb(x, y, obj.posX, obj.posY)
+        const gobj = cb(x, y, obj)
         if (gobj) {
           result = gobj
         }
