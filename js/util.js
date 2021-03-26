@@ -13,10 +13,14 @@ export function getRandom(min, max) {
 // https://stackoverflow.com/a/1349426/4396543
 export function generateId(length) {
   let result           = '';
-  let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let charactersLength = characters.length;
   for ( let i = 0; i < length; i++ ) {
      result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
+}
+
+export function is(source, target) {
+  return source.constructor === target
 }
