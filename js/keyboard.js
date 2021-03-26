@@ -10,7 +10,8 @@ export const keyboard = (() => {
   }
 
   function keyHandler({ key, type }) {
-    const state = type === 'keydown'
+    const state = (type === 'keydown')
+    key = key.toLowerCase()
     if (key === 'k') keyboard.k = state
     if (key === 'o') keyboard.o = state
     if (key === 'w') keyboard.up = state
