@@ -1,4 +1,4 @@
-export function generateConfig(blockSize = 10, sizeCoefficient = 1, aspectRatio = [ 16, 9 ]) {
+function generateConfig(blockSize = 10, sizeCoefficient = 1, aspectRatio = [ 16, 9 ]) {
   const BLOCK_SIZE = blockSize
   const SIZE_COEFFICIENT = sizeCoefficient
   const ASPECT_RATIO = aspectRatio
@@ -17,3 +17,6 @@ export function generateConfig(blockSize = 10, sizeCoefficient = 1, aspectRatio 
     GAME_HEIGHT
   }
 }
+
+const Config = generateConfig(64, 1, [ 18, 12 ])
+export default Config

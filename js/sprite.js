@@ -100,5 +100,7 @@ export const SpriteCollection = {
     new Sprite(tileset3, 13 * 16, 9 * 16 + 8, 16, 16),
     new Sprite(tileset3, 14 * 16, 9 * 16 + 8, 16, 16),
     new Sprite(tileset3, 15 * 16, 9 * 16 + 8, 16, 16),
-  ], 300)
+  ], 300),
+  KEY_SILVER: new Sprite(tileset, 8 * 16, 8 * 16, 16, 16),
+  KEY_GOLDEN: new Sprite(tileset, 9 * 16, 9 * 16, 16, 16),
 }

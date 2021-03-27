@@ -11,7 +11,7 @@ export class Rectangle {
     this.background = background
     this.defaultBackground = background
     this.state = {}
-    this.id = generateId(30)
+    this._rid = generateId(30)
 
     this._debug = false
   }

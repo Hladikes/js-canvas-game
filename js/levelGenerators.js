@@ -2,6 +2,7 @@ import Floor from './game/floor.js'
 import Wall from './game/wall.js'
 import { Position } from './position.js'
 import { SpriteCollection } from './sprite.js'
+import Config from './config.js'
 
 function generateEmptyGrid(width, height, blockSize) {
   const grid = []
@@ -19,32 +20,32 @@ function generateEmptyGrid(width, height, blockSize) {
   return grid
 }
 
-export function generateEmptyLevel(game, cb) {
+export function generateEmptyLevel(cb) {
   const objects = []
-  const grid = generateEmptyGrid(game.TILES_WIDTH, game.TILES_HEIGHT, game.BLOCK_SIZE)
+  const grid = generateEmptyGrid(Config.TILES_WIDTH, Config.TILES_HEIGHT, Config.BLOCK_SIZE)
   
   grid.forEach((row, y) => {
     row.forEach((obj, x) => {
-      let result = new Floor(game, obj)
+      let result = new Floor(obj)
 
-      if (x === 0 || y === 0 || x === game.TILES_WIDTH - 1 || y === game.TILES_HEIGHT - 1) {
+      if (x === 0 || y === 0 || x === Config.TILES_WIDTH - 1 || y === Config.TILES_HEIGHT - 1) {
         let face
 
-        if (x === 0 && y === game.TILES_HEIGHT - 1) {
+        if (x === 0 && y === Config.TILES_HEIGHT - 1) {
           face = SpriteCollection.WALL_BOTTOM_LEFT
-        } else if (x === game.TILES_WIDTH - 1 && y === game.TILES_HEIGHT - 1) {
+        } else if (x === Config.TILES_WIDTH - 1 && y === Config.TILES_HEIGHT - 1) {
           face = SpriteCollection.WALL_BOTTOM_RIGHT
-        } else if (y === game.TILES_HEIGHT - 1) {
+        } else if (y === Config.TILES_HEIGHT - 1) {
           face = SpriteCollection.WALL_BOTTOM
         } else if (x === 0) {
           face = SpriteCollection.WALL_LEFT
-        } else if (x === game.TILES_WIDTH - 1) {
+        } else if (x === Config.TILES_WIDTH - 1) {
           face = SpriteCollection.WALL_RIGHT
         } else {
           face = SpriteCollection.WALL_TOP
         }
 
-        result = new Wall(game, obj, face)
+        result = new Wall(obj, face)
       } else {
         objects.push(result)
       }

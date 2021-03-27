@@ -10,6 +10,10 @@ export function getRandom(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1))
 }
 
+export function getRandomBool() {
+  return Math.random() > 0.5
+}
+
 // https://stackoverflow.com/a/1349426/4396543
 export function generateId(length) {
   let result           = '';

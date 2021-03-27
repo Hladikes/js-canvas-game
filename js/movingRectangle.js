@@ -19,9 +19,9 @@ export class MovingRectangle extends Rectangle {
     this.dy *= -1
   }
 
-  move(n = this.speed) {
-    this.position.x += n * this.dx
-    this.position.y += n * this.dy
+  move(dt = 1, n = this.speed) {
+    this.position.x += (n * this.dx) * dt
+    this.position.y += (n * this.dy) * dt
   }
 
 }

@@ -1,13 +1,14 @@
 import Player from './game/player.js'
 import { level1, level2 } from './levels.js'
 import { Position } from './position.js'
+import Config from './config.js'
 
-export default class Game {
+class Game {
 
   constructor(config) {
     Object.assign(this, config)
 
-    this.player = new Player(this, new Position(this.BLOCK_SIZE, this.BLOCK_SIZE))
+    this.player = new Player(new Position(Config.BLOCK_SIZE, Config.BLOCK_SIZE))
     this.levelIndex = 0
     this.levels = [
       level1(this),
@@ -21,16 +22,27 @@ export default class Game {
     }
   }
 
+  remove(obj) {
+    if (!obj._rid) {
+      console.error('Object is not instance of Rectangle class', obj)
+      return
+    }
+
+    const index = this.getCurrentLevel().findIndex(i => i._rid === obj._rid)
+    if (index === -1) return
+    this.getCurrentLevel().splice(index, 1)
+  }
+
   getCurrentLevel() {
     return this.levels[this.levelIndex]
   }
 
-  update() {
+  update(dt) {
     this.getCurrentLevel().forEach(gameObject => {
-      gameObject.update()
+      gameObject.update(dt)
     })
 
-    this.player.update(this.getCurrentLevel())
+    this.player.update(dt, this.getCurrentLevel())
   }
 
   draw(ctx) {
@@ -42,3 +54,6 @@ export default class Game {
   }
 
 }
+
+const GameInstance = new Game(Config)
+export default GameInstance

@@ -1,5 +1,4 @@
-export default class FpsCounter {
-
+class FpsCounter {
   constructor() {
     this.t1 = 0
     this.t2 = 0
@@ -14,10 +13,15 @@ export default class FpsCounter {
     this.t1 = +new Date()
   }
 
-  draw(ctx) {
-    ctx.font = "24px monospace";
-    ctx.fillStyle = 'yellow'
-    ctx.fillText(`${this.measuredFps} fps`, 0 + 64, 0 + 32);
+  getDeltaTime() {
+    return this.t2 / 100
   }
 
+  draw(ctx) {
+    ctx.font = "16px monospace";
+    ctx.fillStyle = 'yellow'
+    ctx.fillText(`${this.measuredFps} fps`, 0 + 32, 0 + 16);
+  }
 }
+
+export default new FpsCounter()

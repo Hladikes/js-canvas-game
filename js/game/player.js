@@ -1,18 +1,23 @@
 import Door from './door.js'
 import { MovingRectangle, Direction } from '../movingRectangle.js';
+import LivingEntity from '../livingEntity.js'
 import { SpriteCollection } from '../sprite.js'
 import { keyboard } from '../keyboard.js'
 import { Sound, SoundCollection } from '../sound.js'
 import { getRandomItem } from '../util.js'
+import Game from '../game.js'
+import Config from '../config.js'
+import Inventory from '../inventory.js'
 
-export default class Player extends MovingRectangle {
-
-  constructor(game, position) {
-    
-    const size = game.BLOCK_SIZE * 0.7
+export default class Player extends LivingEntity {
+  constructor(position) {
+    const size = Config.BLOCK_SIZE * 0.7
     super(size, size, position, SpriteCollection.HERO)
     
-    this.game = game
+    this.inventory = new Inventory()
+    // this.state = this.inventory
+    // this._debug = true
+
     this.speed = 5
     // Previous direction x
     this.pdx = 1
@@ -29,40 +34,34 @@ export default class Player extends MovingRectangle {
     }, 300)
   }
 
-  update(obstacles) {
+  update(dt, obstacles) {
+    if (this.health === 0) {
+      this.width = Config.BLOCK_SIZE
+      this.height = Config.BLOCK_SIZE
+      this.background = SpriteCollection.SKULL[1]
+      this.healthBarVisible = false
+      return
+    }
+
     let direction
     if (keyboard.up) direction = Direction.TOP
     else if (keyboard.down) direction = Direction.DOWN
     else if (keyboard.right) {
-      this.pdx = this.dx
       direction = Direction.RIGHT
+      this.pdx = this.dx
     }
     else if (keyboard.left) {
-      this.pdx = this.dx
       direction = Direction.LEFT
+      this.pdx = this.dx
     }
     else direction = Direction.STAY
-
-    if (keyboard.k) {
-      this.game.getCurrentLevel().forEach(obj => {
-        if (obj.constructor === Door) {
-          obj.close()
-        }
-      })
-    }
-
-    if (keyboard.o) {
-      this.game.getCurrentLevel().forEach(obj => {
-        if (obj.constructor === Door) {
-          obj.open()
-        }
-      })
-    }
-
-    this.background = this.pdx === -1 ? SpriteCollection.HERO_REVERSE : SpriteCollection.HERO
+    
+    this.background = (this.pdx === -1) 
+      ? SpriteCollection.HERO_REVERSE
+      : SpriteCollection.HERO
 
     this.setDirection(direction)
-    this.move()
+    this.move(dt)
 
     obstacles.forEach(obstacle => {
       this.checkCollision(obstacle)

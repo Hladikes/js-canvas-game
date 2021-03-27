@@ -1,35 +1,33 @@
-import { generateConfig } from './config.js'
-
-const config = generateConfig(64, 1, [ 20, 12 ])
-const canvas = document.getElementById('canvas')
-const ctx = canvas.getContext('2d', { alpha: false })
-
-canvas.width = config.GAME_WIDTH
-canvas.height = config.GAME_HEIGHT
-ctx.imageSmoothingEnabled = false;
-
+import Config from './config.js'
 import Game from './game.js'
-const game = new Game(config)
-
 import FpsCounter from './fpsCounter.js'
-const fpsCounter = new FpsCounter()
-
 import { Sound, SoundCollection } from './sound.js'
-const music = new Sound(SoundCollection.MUSIC, 0.2, true)
-const wind = new Sound(SoundCollection.WIND, 0.03, true)
-wind.play()
-music.play()
 
-function loop() {
-  fpsCounter.timestamp()
+window.onload = () => {
+  const canvas = document.getElementById('canvas')
+  const ctx = canvas.getContext('2d', { alpha: false })
 
-  ctx.clearRect(0, 0, config.GAME_WIDTH, config.GAME_HEIGHT)
+  canvas.width = Config.GAME_WIDTH
+  canvas.height = Config.GAME_HEIGHT
+  ctx.imageSmoothingEnabled = false;
 
-  game.update()
-  game.draw(ctx)
-  fpsCounter.draw(ctx)
+  const music = new Sound(SoundCollection.MUSIC, 0.2, true)
+  const wind = new Sound(SoundCollection.WIND, 0.03, true)
+  wind.play()
+  music.play()
+
+  function loop() {
+    const dt = FpsCounter.timestamp()
+
+    ctx.clearRect(0, 0, Config.GAME_WIDTH, Config.GAME_HEIGHT)
+
+    Game.update(dt)
+    Game.draw(ctx)
+    FpsCounter.draw(ctx)
+
+    // setTimeout(() => requestAnimationFrame(loop), 1000/30)
+    requestAnimationFrame(loop)
+  }
 
   requestAnimationFrame(loop)
 }
-
-requestAnimationFrame(loop)

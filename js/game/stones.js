@@ -1,11 +1,12 @@
 import { Rectangle } from '../rectangle.js';
 import { getRandomItem } from '../util.js';
 import { SpriteCollection } from '../sprite.js'
+import Config from '../config.js'
 
 export default class Stones extends Rectangle {
   
-  constructor(game, position) {
-    super(game.BLOCK_SIZE, game.BLOCK_SIZE, position, [
+  constructor(position) {
+    super(Config.BLOCK_SIZE, Config.BLOCK_SIZE, position, [
       getRandomItem(SpriteCollection.FLOOR),
       getRandomItem(SpriteCollection.STONES),
     ])
@@ -14,7 +15,7 @@ export default class Stones extends Rectangle {
 
   onCollide(target) {
     target.flipDirection()
-    target.move(target.speed)
+    target.move()
   }
 
 }
