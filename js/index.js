@@ -4,6 +4,15 @@ import FpsCounter from './fpsCounter.js'
 import { Sound, SoundCollection } from './sound.js'
 
 window.onload = () => {
+  // game()
+  document.getElementById('playButton').onclick = () => {
+    document.getElementById('menu').style.display = 'none'
+    document.getElementById('canvas').style.display = 'unset'
+    game()
+  }
+}
+
+const game = () => {
   const canvas = document.getElementById('canvas')
   const ctx = canvas.getContext('2d', { alpha: false })
 

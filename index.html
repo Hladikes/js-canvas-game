@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script type="module" src="./js/index.js"></script>
+    <title>Game</title>
     <style>
+      :root {
+        --primary: #25131A;
+      }
+
       * {
         margin: 0;
+        border: 0;
+        outline: 0;
         padding: 0;
+        font-family: 'Courier New', Courier, monospace;
       }
 
       body {
@@ -16,16 +24,38 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
-        background-color: #25131A;
+        background-color: var(--primary);
       }
 
       canvas {
-        /* cursor: none; */
+        cursor: none;
+        display: none;
+      }
+
+      button {
+        font-size: 32px;
+        padding: 16px 64px;
+        background-color: rgba(255, 255, 255, 0.05);
+        color: rgba(0, 0, 0, 0.65);
+        font-weight: bold;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.75);
+      }
+
+      button:hover {
+        color: yellow;
+        cursor: pointer;
+      }
+
+      button:active {
+        transform: translateY(6px) translateX(6px);
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
       }
     </style>
   </head>
   <body>
     <canvas id="canvas"></canvas>
-    <script type="module" src="./js/index.js"></script>
+    <div id="menu">
+      <button id="playButton">Play</button>
+    </div>
   </body>
 </html>
