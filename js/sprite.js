@@ -56,6 +56,16 @@ export const SpriteCollection = {
     new Sprite(tileset5reversed, 16 * 22, 16 * 11, 16, 16),
     new Sprite(tileset5reversed, 16 * 23, 16 * 11, 16, 16),
   ]),
+  HERO_STATIONARY: animate([
+    new Sprite(tileset5, 16 * 8, 16 * 11, 16, 16),
+    new Sprite(tileset5, 16 * 9, 16 * 11, 16, 16),
+    new Sprite(tileset5, 16 * 8, 16 * 11, 16, 16),
+  ], 500),
+  HERO_STATIONARY_REVERSE: animate([
+    new Sprite(tileset5reversed, 16 * 23, 16 * 11, 16, 16),
+    new Sprite(tileset5reversed, 16 * 22, 16 * 11, 16, 16),
+    new Sprite(tileset5reversed, 16 * 23, 16 * 11, 16, 16),
+  ], 500),
   DEMON: new Sprite(tileset3, 48, 224-48, 16, 16),
   WALL_TOP: [
     new Sprite(tileset, 16, 0, 16, 16),
