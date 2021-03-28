@@ -10,6 +10,7 @@ class Game {
     this.player = new Player(new Position(Config.BLOCK_SIZE, Config.BLOCK_SIZE))
     this.player.setHorizontalGravity(Gravity.END)
     this.player.setVerticalGravity(Gravity.END)
+    
     this.levelIndex = 0
     this.levels = [
       level1(this),
