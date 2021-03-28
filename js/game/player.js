@@ -5,7 +5,6 @@ import { SpriteCollection } from '../sprite.js'
 import { keyboard } from '../keyboard.js'
 import { Sound, SoundCollection } from '../sound.js'
 import { getRandomItem } from '../util.js'
-import Game from '../game.js'
 import Config from '../config.js'
 import Inventory from '../inventory.js'
 
@@ -14,9 +13,7 @@ export default class Player extends LivingEntity {
     const size = Config.BLOCK_SIZE * 0.7
     super(size, size, position, SpriteCollection.HERO)
     
-    this.inventory = new Inventory()
-    // this.state = this.inventory
-    // this._debug = true
+    this.inventory = new Inventory(5)
 
     this.speed = 5
     // Previous direction x
@@ -44,6 +41,9 @@ export default class Player extends LivingEntity {
     }
 
     let direction
+
+    this.inventory.opened = keyboard.i
+
     if (keyboard.up) direction = Direction.TOP
     else if (keyboard.down) direction = Direction.DOWN
     else if (keyboard.right) {
@@ -56,9 +56,15 @@ export default class Player extends LivingEntity {
     }
     else direction = Direction.STAY
     
-    this.background = (this.pdx === -1) 
-      ? SpriteCollection.HERO_REVERSE
-      : SpriteCollection.HERO
+    if (this.dx === 0 && this.dy === 0) {
+      this.background = (this.pdx === -1) 
+        ? SpriteCollection.HERO_STATIONARY_REVERSE
+        : SpriteCollection.HERO_STATIONARY
+    } else {
+      this.background = (this.pdx === -1) 
+        ? SpriteCollection.HERO_REVERSE
+        : SpriteCollection.HERO
+    }
 
     this.setDirection(direction)
     this.move(dt)
@@ -66,6 +72,11 @@ export default class Player extends LivingEntity {
     obstacles.forEach(obstacle => {
       this.checkCollision(obstacle)
     })
+  }
+
+  draw(ctx) {
+    super.draw(ctx)
+    this.inventory.draw(ctx)
   }
 
 }
