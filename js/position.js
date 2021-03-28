@@ -8,3 +8,7 @@ export class Position {
 export function convertTilesPosition(tposX, tposY, block) {
   return new Position(tposX * block, tposY * block)
 }
+
+export function clonePosition(p) {
+  return new Position(p.x, p.y)
+}

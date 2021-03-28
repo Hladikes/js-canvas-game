@@ -1,6 +1,6 @@
 import Floor from './game/floor.js'
 import Wall from './game/wall.js'
-import { Position } from './position.js'
+import { Position, clonePosition } from './position.js'
 import { SpriteCollection } from './sprite.js'
 import Config from './config.js'
 
@@ -25,8 +25,8 @@ export function generateEmptyLevel(cb) {
   const grid = generateEmptyGrid(Config.TILES_WIDTH, Config.TILES_HEIGHT, Config.BLOCK_SIZE)
   
   grid.forEach((row, y) => {
-    row.forEach((obj, x) => {
-      let result = new Floor(obj)
+    row.forEach((pos, x) => {
+      let result = new Floor(pos)
 
       if (x === 0 || y === 0 || x === Config.TILES_WIDTH - 1 || y === Config.TILES_HEIGHT - 1) {
         let face
@@ -45,13 +45,13 @@ export function generateEmptyLevel(cb) {
           face = SpriteCollection.WALL_TOP
         }
 
-        result = new Wall(obj, face)
+        result = new Wall(pos, face)
       } else {
         objects.push(result)
       }
 
       if (cb) {
-        const gobj = cb(x, y, obj)
+        const gobj = cb(x, y, pos)
         if (gobj) {
           result = gobj
         }
