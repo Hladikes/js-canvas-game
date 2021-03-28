@@ -1,4 +1,4 @@
-import { MovingRectangle } from './movingRectangle.js'
+import MovingRectangle from './movingRectangle.js'
 
 export default class LivingEntity extends MovingRectangle {
 

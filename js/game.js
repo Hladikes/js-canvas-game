@@ -1,7 +1,7 @@
 import Player from './game/player.js'
 import { level1, level2 } from './levels.js'
 import { Position } from './position.js'
-import Gravity from './gravity.js'
+import Gravity from './enums/gravity.js'
 import Config from './config.js'
 
 class Game {

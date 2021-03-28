@@ -6,7 +6,7 @@ import Stones from './game/stones.js'
 import Teleport from './game/teleport.js'
 import Key from './game/key.js'
 
-import Gravity from './gravity.js'
+import Gravity from './enums/gravity.js'
 import { SpriteCollection } from './sprite.js'
 import { generateEmptyLevel } from './levelGenerators.js'
 

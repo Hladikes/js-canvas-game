@@ -1,5 +1,4 @@
-import Door from './door.js'
-import { MovingRectangle, Direction } from '../movingRectangle.js';
+import Direction from '../enums/direction.js'
 import LivingEntity from '../livingEntity.js'
 import { SpriteCollection } from '../sprite.js'
 import { keyboard } from '../keyboard.js'
