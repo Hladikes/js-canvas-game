@@ -18,5 +18,5 @@ function generateConfig(blockSize = 10, sizeCoefficient = 1, aspectRatio = [ 16,
   }
 }
 
-const Config = generateConfig(64, 1, [ 18, 12 ])
+const Config = generateConfig(64, 1, [ 16, 10 ])
 export default Config
