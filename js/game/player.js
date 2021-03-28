@@ -10,7 +10,7 @@ import Inventory from '../inventory.js'
 
 export default class Player extends LivingEntity {
   constructor(position) {
-    const size = Config.BLOCK_SIZE * 0.7
+    const size = Config.BLOCK_SIZE * 0.65
     super(size, size, position, SpriteCollection.HERO)
     
     this.inventory = new Inventory(5)
