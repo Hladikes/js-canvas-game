@@ -18,8 +18,9 @@ export function animate(sprites, delay = 100) {
     let sprite = sprites[index]
     
     setInterval(() => {
-      index = index === sprites.length ? 0 : index + 1
       Object.assign(sprite, sprites[index])
+      index++
+      if (index === sprites.length) index = 0
     }, delay)
 
     return sprite
