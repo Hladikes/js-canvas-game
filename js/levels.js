@@ -26,9 +26,7 @@ export function level1() {
       return [
         new Door(position, 1),
         new Teleport(
-          Config.BLOCK_SIZE, 
-          8, 
-          new Position(position.x, position.y + Config.BLOCK_SIZE - 8), 
+          position, 
           1,
           convertTilesPosition(7, 1, Config.BLOCK_SIZE))
       ]
@@ -38,8 +36,6 @@ export function level1() {
       return [
         new Door(position, 10),
         new Teleport(
-          Config.BLOCK_SIZE, 
-          8, 
           position, 
           1,
           convertTilesPosition(2, Config.TILES_HEIGHT - 2, Config.BLOCK_SIZE))
@@ -66,14 +62,8 @@ export function level2(game) {
     if (x === 7 && y === 0) {
       return [
         new Door(position, 1),
-        new Teleport(Config.BLOCK_SIZE, 8, position, 0, convertTilesPosition(7, Config.TILES_HEIGHT - 2, Config.BLOCK_SIZE))
+        new Teleport(position, 0, convertTilesPosition(7, Config.TILES_HEIGHT - 2, Config.BLOCK_SIZE))
       ]
-    }
-
-    if ((y === 7 || y === 6 || y === 8) && x > 0 && x < Config.TILES_WIDTH - 1 && x !== 6 && x !== 7) {
-      return (getRandomBool() && getRandomBool())
-        ? new Wall(position, SpriteCollection.WALL_TOP)
-        : new Stones(position)
     }
 
     if (x === Config.TILES_WIDTH - 4 && y === Config.TILES_HEIGHT - 2) {
@@ -84,9 +74,7 @@ export function level2(game) {
       return [
         new Door(position, 10),
         new Teleport(
-          Config.BLOCK_SIZE, 
-          8, 
-          new Position(position.x, position.y + Config.BLOCK_SIZE - 8), 
+          position, 
           0, 
           convertTilesPosition(2, 1, Config.BLOCK_SIZE))
       ]
@@ -94,6 +82,12 @@ export function level2(game) {
 
     if ((x === 6 && y === 2) || (x === 7 && y === 8) || (y === 5 && x === Config.TILES_WIDTH - 2)) {
       return new Rectangle(Config.BLOCK_SIZE, Config.BLOCK_SIZE, position, getRandomItem(SpriteCollection.SKULL))
+    }
+
+    if ((y === 4 || y === 5 || y === 6) && x > 0 && x < Config.TILES_WIDTH - 1 && x !== 6 && x !== 7) {
+      return (getRandomBool() && getRandomBool())
+        ? new Wall(position, SpriteCollection.WALL_TOP)
+        : new Stones(position)
     }
   })
 }
