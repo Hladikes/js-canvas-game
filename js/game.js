@@ -5,9 +5,7 @@ import Config from './config.js'
 
 class Game {
 
-  constructor(config) {
-    Object.assign(this, config)
-
+  constructor() {
     this.player = new Player(new Position(Config.BLOCK_SIZE, Config.BLOCK_SIZE))
     this.levelIndex = 0
     this.levels = [
@@ -55,5 +53,5 @@ class Game {
 
 }
 
-const GameInstance = new Game(Config)
+const GameInstance = new Game()
 export default GameInstance
