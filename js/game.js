@@ -1,12 +1,15 @@
 import Player from './game/player.js'
 import { level1, level2 } from './levels.js'
 import { Position } from './position.js'
+import Gravity from './gravity.js'
 import Config from './config.js'
 
 class Game {
 
   constructor() {
     this.player = new Player(new Position(Config.BLOCK_SIZE, Config.BLOCK_SIZE))
+    this.player.setHorizontalGravity(Gravity.END)
+    this.player.setVerticalGravity(Gravity.END)
     this.levelIndex = 0
     this.levels = [
       level1(this),

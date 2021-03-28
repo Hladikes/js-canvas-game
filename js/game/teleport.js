@@ -1,6 +1,7 @@
 import { Rectangle } from '../rectangle.js';
 import Config from '../config.js'
 import Game from '../game.js'
+import Gravity from '../gravity.js';
 
 export default class Teleport extends Rectangle {
 
@@ -8,6 +9,9 @@ export default class Teleport extends Rectangle {
     super(Config.BLOCK_SIZE, Config.BLOCK_SIZE, position, 'transparent')
     this.targetLevelIndex = targetLevelIndex
     this.teleportPosition = teleportPosition
+    this.width = 3
+    this.height = 3
+    this.setGravity(Gravity.CENTER, Gravity.CENTER)
   }
 
   onCollide(collider) {

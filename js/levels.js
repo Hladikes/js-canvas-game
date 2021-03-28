@@ -6,6 +6,7 @@ import Stones from './game/stones.js'
 import Teleport from './game/teleport.js'
 import Key from './game/key.js'
 
+import Gravity from './gravity.js'
 import { SpriteCollection } from './sprite.js'
 import { generateEmptyLevel } from './levelGenerators.js'
 
@@ -43,11 +44,23 @@ export function level1() {
     }
 
     if (x === Config.TILES_WIDTH - 2 && y === Config.TILES_HEIGHT - 2) {
-      return new Key(position, 1, false)
+      let k = new Key(position, 1, false)
+      k.setGravity(Gravity.END, Gravity.END)
+      return k
     }
 
-    if (x === 5 && (y === 4 || y === 5)) {
+    if (((x === 4 || x === 5) && y === 4) || (x === 5 && y === 5)) {
       return new Stones(position)
+    }
+
+    if (x === 4 && y === 5) {
+      let k = new Key(position, 4, false)
+      k.setHorizontalGravity(Gravity.END)
+      return k
+    }
+
+    if (y === 6 && x === 9) {
+      return new Door(position, 4)
     }
 
     if ((x === 2 && y === 4) || (x === 11 && y === 7) || (y === 1 && x === Config.TILES_WIDTH - 2)) {
@@ -67,7 +80,9 @@ export function level2(game) {
     }
 
     if (x === Config.TILES_WIDTH - 4 && y === Config.TILES_HEIGHT - 2) {
-      return new Key(position, 10, true)
+      const k = new Key(position, 10, true)
+      k.setGravity(Gravity.END, Gravity.END)
+      return k
     }
 
     if (x === 2 && y === Config.TILES_HEIGHT - 1) {

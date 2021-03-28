@@ -1,19 +1,39 @@
 import { Sprite } from './sprite.js'
 import { generateId } from './util.js'
-import { Position } from './position.js'
+import { Position, clonePosition } from './position.js'
+import Config from './config.js'
 
 export class Rectangle {
 
   constructor(width = 16, height = 16, position = new Position(0, 0), background = 'transparent') {
     this.width = width 
     this.height = height 
-    this.position = position
+    this.position = clonePosition(position)
+    this.defaultPosition = clonePosition(position)
     this.background = background
     this.defaultBackground = background
-    this.state = {}
+    
     this._rid = generateId(30)
-
+    this._debugInfo = {}
     this._debug = false
+    this._boundingBoxVisible = false
+  }
+
+  setHorizontalGravity(g) {
+    this.position.x += (Config.BLOCK_SIZE * g) - (this.width * g)
+  }
+
+  setVerticalGravity(g) {
+    this.position.y += (Config.BLOCK_SIZE * g) - (this.height * g)
+  }
+
+  setGravity(gx, gy) {
+    this.setHorizontalGravity(gx)
+    this.setVerticalGravity(gy)
+  }
+
+  resetGravity() {
+    this.position = this.defaultPosition
   }
 
   checkCollision(target) {
@@ -53,6 +73,17 @@ export class Rectangle {
           sprite.draw(ctx, this.position.x, this.position.y, this.width, this.height)
         })
         break;
+    }
+
+    if (this._boundingBoxVisible) {
+      ctx.beginPath()
+      ctx.strokeStyle = 'cyan'
+      ctx.moveTo(this.position.x, this.position.y)
+      ctx.lineTo(this.position.x + this.width, this.position.y)
+      ctx.lineTo(this.position.x + this.width, this.position.y + this.height)
+      ctx.lineTo(this.position.x, this.position.y + this.height)
+      ctx.lineTo(this.position.x, this.position.y)
+      ctx.stroke()
     }
   }
 
