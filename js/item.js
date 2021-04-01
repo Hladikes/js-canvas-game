@@ -11,7 +11,7 @@ export default class Item extends Rectangle {
   onCollide(collidor) {
     if (collidor.constructor !== Player) return
     if (!collidor.inventory.add(this)) return
-    Game.remove(this)
+    Game.getCurrentLevel().removeRectangle(this)
   }
 
 }

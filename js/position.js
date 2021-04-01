@@ -1,3 +1,5 @@
+import Config from './config.js'
+
 export class Position {
   constructor(posX = 0, posY = 0) {
     this.x = posX
@@ -5,8 +7,8 @@ export class Position {
   }
 }
 
-export function convertTilesPosition(tposX, tposY, block) {
-  return new Position(tposX * block, tposY * block)
+export function convertTilesPosition(tposX, tposY) {
+  return new Position(tposX * Config.BLOCK_SIZE, tposY * Config.BLOCK_SIZE)
 }
 
 export function clonePosition(p) {

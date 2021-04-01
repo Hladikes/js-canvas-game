@@ -30,7 +30,7 @@ export default class Player extends LivingEntity {
     }, 300)
   }
 
-  update(dt, obstacles) {
+  update(dt) {
     if (this.health === 0) {
       this.width = Config.BLOCK_SIZE
       this.height = Config.BLOCK_SIZE
@@ -67,10 +67,6 @@ export default class Player extends LivingEntity {
 
     this.setDirection(direction)
     this.move(dt)
-
-    obstacles.forEach(obstacle => {
-      this.checkCollision(obstacle)
-    })
   }
 
   draw(ctx) {
