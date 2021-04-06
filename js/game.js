@@ -27,8 +27,8 @@ class Game {
     return this.levels[this.levelIndex]
   }
 
-  update(dt) {
-    this.getCurrentLevel().update(dt)
+  update() {
+    this.getCurrentLevel().update()
   }
 
   draw(ctx) {

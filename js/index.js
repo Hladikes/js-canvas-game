@@ -26,16 +26,16 @@ const game = () => {
   music.play()
 
   function loop() {
-    const dt = FpsCounter.timestamp()
+    FpsCounter.timestamp()
 
     ctx.clearRect(0, 0, Config.GAME_WIDTH, Config.GAME_HEIGHT)
 
-    Game.update(dt)
+    Game.update()
     Game.draw(ctx)
     FpsCounter.draw(ctx)
 
-    // setTimeout(() => requestAnimationFrame(loop), 1000/30)
-    requestAnimationFrame(loop)
+    setTimeout(() => requestAnimationFrame(loop), 1000 / 75)
+    // requestAnimationFrame(loop)
   }
 
   requestAnimationFrame(loop)

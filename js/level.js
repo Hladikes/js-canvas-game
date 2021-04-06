@@ -9,12 +9,12 @@ export default class Level {
     this.rectangles = levelBuilder.build()
   }
 
-  update(dt) {
+  update() {
     this.rectangles.forEach(r => {
-      r.update(dt)
       this.player.checkCollision(r)
+      r.update()
     })
-    this.player.update(dt)
+    this.player.update()
   }
 
   draw(ctx) {
