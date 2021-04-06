@@ -30,7 +30,7 @@ export default class Player extends LivingEntity {
     }, 300)
   }
 
-  update(dt) {
+  update() {
     if (this.health === 0) {
       this.width = Config.BLOCK_SIZE
       this.height = Config.BLOCK_SIZE
@@ -47,11 +47,11 @@ export default class Player extends LivingEntity {
     else if (keyboard.down) direction = Direction.DOWN
     else if (keyboard.right) {
       direction = Direction.RIGHT
-      this.pdx = this.dx
+      this.pdx = direction.dx
     }
     else if (keyboard.left) {
       direction = Direction.LEFT
-      this.pdx = this.dx
+      this.pdx = direction.dx
     }
     else direction = Direction.STAY
     
@@ -66,7 +66,7 @@ export default class Player extends LivingEntity {
     }
 
     this.setDirection(direction)
-    this.move(dt)
+    this.move()
   }
 
   draw(ctx) {
