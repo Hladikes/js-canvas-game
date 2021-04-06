@@ -20,6 +20,8 @@ export default class LevelOne extends Level {
     lb.at(0, h).set(p => new Wall(p, SpriteCollection.WALL_BOTTOM_LEFT))
 
     lb.at(3, 3).lay(p => new Key(p, 1))
-    lb.at(4, 5).lay(p => new Door(p, 1))
+
+    lb.from(1, 5).to(w - 1, 5).set(p => new Wall(p, SpriteCollection.WALL_TOP))
+    lb.at(4, 5).set(p => new Door(p, 1))
   }
 }
