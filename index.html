@@ -4,58 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script type="module" src="./js/index.js"></script>
     <title>Game</title>
-    <style>
-      :root {
-        --primary: #25131A;
-      }
-
-      * {
-        margin: 0;
-        border: 0;
-        outline: 0;
-        padding: 0;
-        font-family: 'Courier New', Courier, monospace;
-      }
-
-      body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: var(--primary);
-      }
-
-      canvas {
-        /* cursor: none; */
-        display: none;
-      }
-
-      button {
-        font-size: 32px;
-        padding: 16px 64px;
-        background-color: rgba(255, 255, 255, 0.05);
-        color: rgba(0, 0, 0, 0.65);
-        font-weight: bold;
-        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.75);
-      }
-
-      button:hover {
-        color: yellow;
-        cursor: pointer;
-      }
-
-      button:active {
-        transform: translateY(6px) translateX(6px);
-        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
-      }
-    </style>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <div id="menu">
-      <button id="playButton">Play</button>
-    </div>
+    <section view="menu">
+      <button goto="canvas" action="startGame">Start game</button>
+      <button goto="instructions">Instructions</button>
+      <button goto="credits">Credits</button>
+    </section>
+
+    <section view="escapeMenu">
+      <button goto="canvas" action="resumeGame">Resume</button>
+    </section>
+    
+    <section view="instructions">
+      <h1>Instructions</h1>
+      <p><b>W</b> - Move up</p>
+      <p><b>A</b> - Move left</p>
+      <p><b>S</b> - Move down</p>
+      <p><b>D</b> - Move right</p>
+      <br>
+      <button goto="menu">&lt; Back to menu</button>
+    </section>
+
+    <section view="credits">
+      <h1>Textures</h1>
+      <a href="https://0x72.itch.io/dungeontileset-ii">https://0x72.itch.io/dungeontileset-ii</a>
+      <a href="https://0x72.itch.io/16x16-dungeon-tileset">https://0x72.itch.io/16x16-dungeon-tileset</a>
+      <h1>Sounds</h1>
+      <a href="https://www.freesfx.co.uk/">https://www.freesfx.co.uk/</a>
+      <a href="https://c418.bandcamp.com/track/floating-trees">https://c418.bandcamp.com/track/floating-trees</a>
+      <br>
+      <button goto="menu">&lt; Back to menu</button>
+    </section>
+
+    <section view="rip">
+      <h1>You have died</h1>
+      <br>
+      <button goto="menu">&lt; Back to menu</button>
+    </section>
+    
+    <section view="canvas">
+      <canvas id="canvas"></canvas>
+      <button class="small" id="muteBtn">🔊</button>
+    </section>
+
   </body>
 </html>

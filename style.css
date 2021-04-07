@@ -1,0 +1,60 @@
+:root {
+  --primary: #25131A;
+}
+
+* {
+  margin: 0;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--primary);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+section > * {
+  margin: 16px 0;
+}
+
+button {
+  font-size: 32px;
+  padding: 16px 64px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: bold;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.75);
+}
+
+button:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(6px) translateX(6px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+button.small {
+  font-size: 24px;
+  padding: 8px 32px;
+}
+
+[hidden] {
+  display: none !important;
+}

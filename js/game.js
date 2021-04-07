@@ -11,10 +11,19 @@ class Game {
     this.player.setHorizontalGravity(Gravity.CENTER)
     this.player.setVerticalGravity(Gravity.CENTER)
     
+    this.paused = false
     this.levelIndex = 0
     this.levels = [
       new LevelOne(this.player)
     ]
+  }
+
+  pause() {
+    this.paused = true
+  }
+
+  resume() {
+    this.paused = false
   }
 
   setLevel(index) {
@@ -28,10 +37,12 @@ class Game {
   }
 
   update() {
+    if (this.paused) return
     this.getCurrentLevel().update()
   }
-
+  
   draw(ctx) {
+    if (this.paused) return
     this.getCurrentLevel().draw(ctx)
   }
 

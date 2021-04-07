@@ -2,14 +2,40 @@ import Config from './config.js'
 import Game from './game.js'
 import FpsCounter from './fpsCounter.js'
 import { Sound, SoundCollection } from './sound.js'
+import MenuController from './menuController.js'
+import SoundManager from './soundManager.js'
+import { keyboard } from './keyboard.js'
+
+let muted = false
 
 window.onload = () => {
-  // game()
-  document.getElementById('playButton').onclick = () => {
-    document.getElementById('menu').style.display = 'none'
-    document.getElementById('canvas').style.display = 'unset'
-    game()
-  }
+  MenuController.init({
+    startGame() {
+      game()
+    },
+
+    resumeGame() {
+      Game.resume()
+      SoundManager.sounds.forEach(sound => {
+        sound.unmute();
+      })
+    }
+  })
+
+  document.getElementById('muteBtn').addEventListener('click', event => {
+    if (muted) {
+      event.target.innerText = '🔊'
+      SoundManager.sounds.forEach(sound => {
+        sound.unmute()
+      })
+    } else {
+      event.target.innerText = '🔇'
+      SoundManager.sounds.forEach(sound => {
+        sound.mute()
+      })
+    }
+    muted = !muted
+  })
 }
 
 const game = () => {
@@ -26,6 +52,14 @@ const game = () => {
   music.play()
 
   function loop() {
+    if (keyboard.escape) {
+      MenuController.showView('escapeMenu')
+      Game.pause()
+      SoundManager.sounds.forEach(sound => {
+        sound.mute();
+      })
+    }
+
     FpsCounter.timestamp()
 
     ctx.clearRect(0, 0, Config.GAME_WIDTH, Config.GAME_HEIGHT)

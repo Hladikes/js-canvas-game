@@ -12,6 +12,8 @@ export const keyboard = (() => {
   function keyHandler({ key, type }) {
     const state = (type === 'keydown')
     key = key.toLowerCase()
+    
+    if (key === 'escape') keyboard.escape = state
     if (key === 'i') keyboard.i = state
     if (key === 'w') keyboard.up = state
     if (key === 's') keyboard.down = state
