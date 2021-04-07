@@ -16,9 +16,11 @@ window.onload = () => {
 
     resumeGame() {
       Game.resume()
-      SoundManager.sounds.forEach(sound => {
-        sound.unmute();
-      })
+      if (!muted) {
+        SoundManager.sounds.forEach(sound => {
+          sound.unmute();
+        })
+      }
     }
   })
 
