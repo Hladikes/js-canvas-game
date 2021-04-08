@@ -25,17 +25,10 @@ window.onload = () => {
   })
 
   document.getElementById('muteBtn').addEventListener('click', event => {
-    if (muted) {
-      event.target.innerText = '🔊'
-      SoundManager.sounds.forEach(sound => {
-        sound.unmute()
-      })
-    } else {
-      event.target.innerText = '🔇'
-      SoundManager.sounds.forEach(sound => {
-        sound.mute()
-      })
-    }
+    event.target.innerText = muted ? '🔊' : '🔇'
+    SoundManager.sounds.forEach(sound => {
+      sound[muted ? 'unmute' : 'mute']()
+    })
     muted = !muted
   })
 }
