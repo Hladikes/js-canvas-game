@@ -1,4 +1,6 @@
+import GameInstance from './game.js'
 import LevelBuilder from './levelBuilder.js'
+import LivingEntity from './livingEntity.js'
 
 export default class Level {
 
@@ -12,6 +14,11 @@ export default class Level {
   update() {
     this.rectangles.forEach(r => {
       this.player.checkCollision(r)
+      GameInstance.projectiles.forEach(p => {
+        if (r instanceof LivingEntity) {
+          r.checkCollision(p)
+        }
+      })
       r.update()
     })
     this.player.update()

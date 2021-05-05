@@ -15,7 +15,8 @@ export class Sprite {
 export function animate(sprites, delay = 100) {
   return (() => {
     let index = 0
-    let sprite = sprites[index]
+    let sprite = new Sprite()
+    Object.assign(sprite, sprites[index])
     
     setInterval(() => {
       Object.assign(sprite, sprites[index])
@@ -67,7 +68,37 @@ export const SpriteCollection = {
     new Sprite(tileset5reversed, 16 * 22, 16 * 11, 16, 16),
     new Sprite(tileset5reversed, 16 * 23, 16 * 11, 16, 16),
   ], 500),
-  DEMON: new Sprite(tileset3, 48, 224-48, 16, 16),
+  DEMON: animate([
+    new Sprite(tileset5, 23*16, 17*16, 16, 16),
+    new Sprite(tileset5, 24*16, 17*16, 16, 16),
+    new Sprite(tileset5, 25*16, 17*16, 16, 16),
+    new Sprite(tileset5, 26*16, 17*16, 16, 16),
+  ], 150),
+  SLIME: animate([
+    new Sprite(tileset5, 27*16, 7*16, 16, 16),
+    new Sprite(tileset5, 28*16, 7*16, 16, 16),
+    new Sprite(tileset5, 29*16, 7*16, 16, 16),
+    new Sprite(tileset5, 30*16, 7*16, 16, 16),
+  ], 150),
+  SLIME_REVERSE: animate([
+    new Sprite(tileset5reversed, 4*16, 7*16, 16, 16),
+    new Sprite(tileset5reversed, 3*16, 7*16, 16, 16),
+    new Sprite(tileset5reversed, 2*16, 7*16, 16, 16),
+    new Sprite(tileset5reversed, 1*16, 7*16, 16, 16),
+  ], 150),
+  SKELETON: animate([
+    new Sprite(tileset5, 23*16, 5*16, 16, 16),
+    new Sprite(tileset5, 24*16, 5*16, 16, 16),
+    new Sprite(tileset5, 25*16, 5*16, 16, 16),
+    new Sprite(tileset5, 26*16, 5*16, 16, 16),
+  ], 150),
+  SKELETON_REVERSE: animate([
+    // new Sprite(tileset5reversed, 9*16, 5*16, 16, 16),
+    new Sprite(tileset5reversed, 8*16, 5*16, 16, 16),
+    new Sprite(tileset5reversed, 7*16, 5*16, 16, 16),
+    new Sprite(tileset5reversed, 6*16, 5*16, 16, 16),
+    new Sprite(tileset5reversed, 5*16, 5*16, 16, 16),
+  ], 150),
   WALL_TOP: [
     new Sprite(tileset, 16, 0, 16, 16),
     new Sprite(tileset, 16*2, 0, 16, 16),

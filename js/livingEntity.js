@@ -1,4 +1,7 @@
+import GameInstance from './game.js'
 import MovingRectangle from './movingRectangle.js'
+import Config from './config.js'
+import { SpriteCollection } from './sprite.js'
 
 export default class LivingEntity extends MovingRectangle {
 
@@ -7,13 +10,24 @@ export default class LivingEntity extends MovingRectangle {
     this.health = health
     this.maxHealth = health
     this.healthBarVisible = true
+    this.canShootProjectiles = false
+    this._lastShotProjectileTimestamp = 0
+  }
+
+  shootProjectile(p) {
+    if (!this.canShootProjectiles) return
+    
+    let d = +new Date()
+    if (d - this._lastShotProjectileTimestamp > 750) {
+      this._lastShotProjectileTimestamp = d
+      GameInstance.projectiles.add(p)
+    }
   }
 
   damage(n) {
     this.health -= n
     if (this.health < 0) {
       this.health = 0
-      console.log('ded')
     }
   }
 
@@ -26,6 +40,17 @@ export default class LivingEntity extends MovingRectangle {
 
   getHealth() {
     return this.health / this.maxHealth
+  }
+
+  update() {
+    if (this.health <= 0) {
+      this.width = Config.BLOCK_SIZE
+      this.height = Config.BLOCK_SIZE
+      this.background = SpriteCollection.SKULL[1]
+      this.healthBarVisible = false
+      return
+    }
+    super.update()
   }
 
   draw(ctx) {

@@ -6,6 +6,7 @@ import { Sound, SoundCollection } from '../sound.js'
 import { getRandomItem } from '../util.js'
 import Config from '../config.js'
 import Inventory from '../inventory.js'
+import Projectile from '../projectile.js'
 
 export default class Player extends LivingEntity {
   constructor(position) {
@@ -31,29 +32,41 @@ export default class Player extends LivingEntity {
   }
 
   update() {
-    if (this.health === 0) {
+    if (this.health <= 0) {
       this.width = Config.BLOCK_SIZE
       this.height = Config.BLOCK_SIZE
       this.background = SpriteCollection.SKULL[1]
       this.healthBarVisible = false
       return
     }
-
+    
     let direction
 
     this.inventory.opened = keyboard.i
 
-    if (keyboard.up) direction = Direction.TOP
-    else if (keyboard.down) direction = Direction.DOWN
-    else if (keyboard.right) {
+    if (keyboard.w) direction = Direction.TOP
+    else if (keyboard.s) direction = Direction.DOWN
+    else if (keyboard.d) {
       direction = Direction.RIGHT
       this.pdx = direction.dx
     }
-    else if (keyboard.left) {
+    else if (keyboard.a) {
       direction = Direction.LEFT
       this.pdx = direction.dx
     }
     else direction = Direction.STAY
+
+    let shootDirection = null
+    if (keyboard.arrowright) shootDirection = Direction.RIGHT
+    if (keyboard.arrowdown) shootDirection = Direction.DOWN
+    if (keyboard.arrowleft) shootDirection = Direction.LEFT
+    if (keyboard.arrowup) shootDirection = Direction.TOP
+
+    if (shootDirection) {
+      this.shootProjectile(new Projectile(
+        this, this.position, shootDirection, 'cyan', 19, 10
+      ))
+    }
     
     if (this.dx === 0 && this.dy === 0) {
       this.background = (this.pdx === -1) 

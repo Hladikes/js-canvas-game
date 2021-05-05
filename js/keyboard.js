@@ -13,12 +13,15 @@ export const keyboard = (() => {
     const state = (type === 'keydown')
     key = key.toLowerCase()
     
-    if (key === 'escape') keyboard.escape = state
-    if (key === 'i') keyboard.i = state
-    if (key === 'w') keyboard.up = state
-    if (key === 's') keyboard.down = state
-    if (key === 'a') keyboard.left = state
-    if (key === 'd') keyboard.right = state
+    keyboard[key] = state
+
+    // if (key === 'escape') keyboard.escape = state
+    // if (key === 'i') keyboard.i = state
+    // if (key === 'w') keyboard.up = state
+    // if (key === 's') keyboard.down = state
+    // if (key === 'a') keyboard.left = state
+    // if (key === 'd') keyboard.right = state
+    // if (key === 'arrowright') keyboard.arrowright
   }
 
   return keyboard

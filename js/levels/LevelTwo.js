@@ -5,10 +5,11 @@ import Wall from '../game/wall.js'
 import Key from '../game/key.js'
 import Door from '../game/door.js'
 import Teleport from '../game/teleport.js'
-import { SpriteCollection } from '../sprite.js'
+import { Sprite, SpriteCollection } from '../sprite.js'
 import { convertTilesPosition } from '../position.js'
+import { Rectangle } from '../rectangle.js'
+import { getRandomItem } from '../util.js'
 import LivingEntity from '../livingEntity.js'
-import Slime from '../game/slime.js'
 import Skeleton from '../game/skeleton.js'
 
 export default class LevelOne extends Level {
@@ -24,15 +25,17 @@ export default class LevelOne extends Level {
     lb.at(w, h).set(p => new Wall(p, SpriteCollection.WALL_BOTTOM_RIGHT))
     lb.at(0, h).set(p => new Wall(p, SpriteCollection.WALL_BOTTOM_LEFT))
 
-    lb.at(w - 3, 2).lay(p => new Key(p, 1))
-    lb.at(w - 3, 2).lay(p => new Slime(p))
-    lb.from(1, 5).to(w - 1, 5).set(p => new Wall(p, SpriteCollection.WALL_TOP))
-    lb.at(4, 5).set(p => new Door(p, 1))
+    lb.at(w - 2, 0).set(p => new Door(p, 1))
+    lb.at(w - 2, 0).lay(p => new Teleport(p, 0, convertTilesPosition(w - 2, h - 1)))
 
-    lb.at(w - 1, h - 1).lay(p => new Skeleton(p))
+    lb.at(1, 3).lay(p => new Skeleton(p))
+    lb.from(2, 3).to(w - 1, 3).set(p => new Wall(p, SpriteCollection.WALL_TOP))
+    lb.at(w - 1, 6).lay(p => new Skeleton(p))
+    lb.from(1, 6).to(w - 2, 6).set(p => new Wall(p, SpriteCollection.WALL_TOP))
+
+    // lb.at(3, 4).lay(p => new Rectangle(Config.BLOCK_SIZE, Config.BLOCK_SIZE, p, getRandomItem(SpriteCollection.SKULL)))
+    // lb.at(4, h - 2).lay(p => new Rectangle(Config.BLOCK_SIZE, Config.BLOCK_SIZE, p, getRandomItem(SpriteCollection.SKULL)))
+    // lb.at(w - 2, h - 3).lay(p => new Rectangle(Config.BLOCK_SIZE, Config.BLOCK_SIZE, p, getRandomItem(SpriteCollection.SKULL)))
     
-    lb.at(1, h - 1).lay(p => new Key(p, 2))
-    lb.at(w - 2, h).set(p => new Door(p, 2))
-    lb.at(w - 2, h).lay(p => new Teleport(p, 1, convertTilesPosition(w - 2, 1)))
   }
 }

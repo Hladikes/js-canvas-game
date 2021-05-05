@@ -50,5 +50,6 @@ export const SoundCollection = {
   DOOR_OPEN: '../sounds/sfx/door_lock_unlock.mp3',
   DOOR_CLOSE: '../sounds/sfx/door_close.mp3',
   FOOTSTEP_1: '../sounds/sfx/footstep_1.mp3',
-  FOOTSTEP_2: '../sounds/sfx/footstep_2.mp3'
+  FOOTSTEP_2: '../sounds/sfx/footstep_2.mp3',
+  BASS_HIT: '../sounds/sfx/enemy_hit_bass_2.mp3',
 }
