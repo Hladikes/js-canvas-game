@@ -28,8 +28,16 @@ export default class Enemy extends LivingEntity {
     if (!GameInstance) return
     if (GameInstance.player.health === 0) return
     let vector = { dx: 0, dy: 0 }
-    vector.dx = (GameInstance.player.position.x - this.position.x) / 100
-    vector.dy = (GameInstance.player.position.y - this.position.y) / 100
+
+    const distance = Math.sqrt(
+      Math.abs((GameInstance.player.position.x - this.position.x))**2 + 
+      Math.abs((GameInstance.player.position.y - this.position.y))**2
+    )
+
+    const speed = 7
+
+    vector.dx = (GameInstance.player.position.x - this.position.x) / (distance / speed)
+    vector.dy = (GameInstance.player.position.y - this.position.y) / (distance / speed)
 
     this.shootProjectile(new Projectile(
       this, this.position, vector, this.projectileColor, this.projectileDamage, 1
