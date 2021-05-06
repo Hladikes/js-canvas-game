@@ -55,7 +55,7 @@ export class Rectangle {
     if (this._debug) {
       ctx.font = "16px monospace";
       ctx.fillStyle = 'cyan'
-      ctx.fillText(`${JSON.stringify(this.state)}`, this.position.x, this.position.y - 16);
+      ctx.fillText(`${JSON.stringify(this._debugInfo)}`, this.position.x, this.position.y - 16);
     }
 
     switch (this.background.constructor) {

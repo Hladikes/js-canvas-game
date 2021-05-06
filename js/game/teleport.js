@@ -1,7 +1,7 @@
 import { Rectangle } from '../rectangle.js';
 import Config from '../config.js'
 import Game from '../game.js'
-import Gravity from '../gravity.js';
+import Gravity from '../enums/gravity.js';
 
 export default class Teleport extends Rectangle {
 
