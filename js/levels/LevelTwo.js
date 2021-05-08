@@ -11,6 +11,9 @@ import { Rectangle } from '../rectangle.js'
 import { getRandomItem } from '../util.js'
 import LivingEntity from '../livingEntity.js'
 import Skeleton from '../game/skeleton.js'
+import Zombie from '../game/zombie.js'
+import Stones from '../game/stones.js'
+import Void from '../void.js'
 
 export default class LevelOne extends Level {
   define(lb) {
@@ -28,14 +31,20 @@ export default class LevelOne extends Level {
     lb.at(w - 2, 0).set(p => new Door(p, 1))
     lb.at(w - 2, 0).lay(p => new Teleport(p, 0, convertTilesPosition(w - 2, h - 1)))
 
-    lb.at(1, 3).lay(p => new Skeleton(p))
+    lb.at(1, 1).lay(p => new Skeleton(p))
+    lb.at(1, 2).lay(p => new Skeleton(p))
     lb.from(2, 3).to(w - 1, 3).set(p => new Wall(p, SpriteCollection.WALL_TOP))
-    lb.at(w - 1, 6).lay(p => new Skeleton(p))
+    
+    for (let i = 2; i <= 10; i += 2)
+      lb.at(i, 4).set(p => new Stones(p))
+
+    lb.at(9, 4).lay(p => new Key(p, 4))
+
+    lb.at(w - 1, 5).lay(p => new Skeleton(p))
     lb.from(1, 6).to(w - 2, 6).set(p => new Wall(p, SpriteCollection.WALL_TOP))
 
-    // lb.at(3, 4).lay(p => new Rectangle(Config.BLOCK_SIZE, Config.BLOCK_SIZE, p, getRandomItem(SpriteCollection.SKULL)))
-    // lb.at(4, h - 2).lay(p => new Rectangle(Config.BLOCK_SIZE, Config.BLOCK_SIZE, p, getRandomItem(SpriteCollection.SKULL)))
-    // lb.at(w - 2, h - 3).lay(p => new Rectangle(Config.BLOCK_SIZE, Config.BLOCK_SIZE, p, getRandomItem(SpriteCollection.SKULL)))
-    
+    lb.at(2, h).set(p => new Door(p, 4))
+    lb.at(2, h).lay(p => new Teleport(p, 2, convertTilesPosition(2, 1)))
+    lb.at(2, h - 1).lay(p => new Zombie(p))
   }
 }

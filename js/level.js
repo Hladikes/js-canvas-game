@@ -1,6 +1,7 @@
 import GameInstance from './game.js'
 import LevelBuilder from './levelBuilder.js'
 import LivingEntity from './livingEntity.js'
+import Floor from './game/floor.js'
 
 export default class Level {
 
@@ -15,7 +16,7 @@ export default class Level {
     this.rectangles.forEach(r => {
       this.player.checkCollision(r)
       GameInstance.projectiles.forEach(p => {
-        if (r instanceof LivingEntity) {
+        if (!(r instanceof Floor)) {
           r.checkCollision(p)
         }
       })

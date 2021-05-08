@@ -3,8 +3,10 @@ import { convertTilesPosition } from './position.js'
 import Gravity from './enums/gravity.js'
 import LevelOne from './levels/LevelOne.js'
 import LevelTwo from './levels/LevelTwo.js'
+import LevelThree from './levels/LevelThree.js'
+import LevelFinal from './levels/LevelFinal.js'
 import LivingEntity from './livingEntity.js'
-
+import MenuController from './menuController.js'
 class Game {
 
   constructor() {
@@ -19,6 +21,8 @@ class Game {
     this.levels = [
       new LevelOne(this.player),
       new LevelTwo(this.player),
+      new LevelThree(this.player),
+      new LevelFinal(this.player),
     ]
     this.getCurrentLevel().rectangles.forEach(r => {
       if (r instanceof LivingEntity) r.canShootProjectiles = true
@@ -47,6 +51,10 @@ class Game {
   }
 
   update() {
+    if (this.player.health <= 0) {
+      MenuController.showView('rip')
+      return
+    }
     if (this.paused) return
     this.projectiles.forEach(projectile => {
       projectile.update()

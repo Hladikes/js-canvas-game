@@ -3,13 +3,17 @@ import GameInstance from './game.js';
 import LivingEntity from './livingEntity.js';
 import { clonePosition } from './position.js';
 import { Rectangle } from './rectangle.js';
+import Wall from './game/wall.js'
+import Stones from './game/stones.js'
 import Enemy from './enemy.js'
 import { Sound, SoundCollection } from './sound.js';
+import Gravity from './enums/gravity.js';
 export default class Projectile extends Rectangle {
   constructor(shooter, position, direction, background, damage, speed = 1)  {
     super(Config.BLOCK_SIZE / 6, Config.BLOCK_SIZE / 6, position, 'transparent')
     this.shooter = shooter
     this.position = clonePosition(position)
+    this.setGravity(Gravity.CENTER, Gravity.CENTER)
     this.direction = direction
     this.damage = damage
     this.speed = speed
@@ -39,6 +43,10 @@ export default class Projectile extends Rectangle {
   }
 
   onCollide(collider) {
+    if (collider instanceof Wall || collider instanceof Stones) {
+      GameInstance.projectiles.delete(this)
+      return
+    }
     if ((this.shooter instanceof Enemy) && (collider instanceof Enemy)) return
     if (collider.health <= 0) return
     if (collider === this.shooter) return

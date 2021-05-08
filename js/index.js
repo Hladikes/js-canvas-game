@@ -14,6 +14,10 @@ window.onload = () => {
       game()
     },
 
+    restart() {
+      window.location.reload()
+    },
+
     resumeGame() {
       Game.resume()
       if (!muted) {

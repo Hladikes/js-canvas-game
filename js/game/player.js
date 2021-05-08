@@ -29,10 +29,13 @@ export default class Player extends LivingEntity {
         getRandomItem(this.footstepSounds).play()
       }
     }, 300)
+
+    // this._godMode = true
   }
 
   update() {
     if (this.health <= 0) {
+      clearInterval(this._soundInterval)
       this.width = Config.BLOCK_SIZE
       this.height = Config.BLOCK_SIZE
       this.background = SpriteCollection.SKULL[1]
@@ -62,9 +65,9 @@ export default class Player extends LivingEntity {
     if (keyboard.arrowleft) shootDirection = Direction.LEFT
     if (keyboard.arrowup) shootDirection = Direction.TOP
 
-    if (shootDirection) {
+    if (shootDirection && this.canShoot()) {
       this.shootProjectile(new Projectile(
-        this, this.position, shootDirection, 'cyan', 19, 10
+        this, this.position, shootDirection, 'cyan', this._godMode ? 199999 : 19, 10
       ))
     }
     

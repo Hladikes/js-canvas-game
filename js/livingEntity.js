@@ -11,20 +11,28 @@ export default class LivingEntity extends MovingRectangle {
     this.maxHealth = health
     this.healthBarVisible = true
     this.canShootProjectiles = false
-    this._lastShotProjectileTimestamp = 0
+    this._godMode = false
+    this._lastShotProjectileTimestamp = +new Date()
+  }
+
+  canShoot() {
+    let d = +new Date()
+    if ((d - this._lastShotProjectileTimestamp) > 750) {
+      this._lastShotProjectileTimestamp = d
+      return true
+    }
+    return false
   }
 
   shootProjectile(p) {
     if (!this.canShootProjectiles) return
     
-    let d = +new Date()
-    if (d - this._lastShotProjectileTimestamp > 750) {
-      this._lastShotProjectileTimestamp = d
-      GameInstance.projectiles.add(p)
-    }
+    GameInstance.projectiles.add(p)
   }
 
   damage(n) {
+    if (this._godMode) return
+    
     this.health -= n
     if (this.health < 0) {
       this.health = 0

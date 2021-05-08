@@ -2,9 +2,9 @@ import Enemy from '../enemy.js';
 import GameInstance from '../game.js';
 import { SpriteCollection } from '../sprite.js';
 
-export default class Skeleton extends Enemy {
+export default class Icy extends Enemy {
   constructor(position) {
-    super(position, SpriteCollection.SKELETON, 75, 1000, 10, 'white')
+    super(position, SpriteCollection.ICY, 100, 500, 9, '#72D6CE')
   }
 
   update() {
@@ -12,9 +12,9 @@ export default class Skeleton extends Enemy {
 
     if (this.health <= 0) return
     if (GameInstance.player.position.x > this.position.x) {
-      this.background = SpriteCollection.SKELETON
+      this.background = SpriteCollection.ICY
     } else {
-      this.background = SpriteCollection.SKELETON_REVERSE
+      this.background = SpriteCollection.ICY_REVERSE
     }
   }
 }

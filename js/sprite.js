@@ -86,6 +86,18 @@ export const SpriteCollection = {
     new Sprite(tileset5reversed, 2*16, 7*16, 16, 16),
     new Sprite(tileset5reversed, 1*16, 7*16, 16, 16),
   ], 150),
+  ICY: animate([
+    new Sprite(tileset5, 27*16, 9*16, 16, 16),
+    new Sprite(tileset5, 28*16, 9*16, 16, 16),
+    new Sprite(tileset5, 29*16, 9*16, 16, 16),
+    new Sprite(tileset5, 30*16, 9*16, 16, 16),
+  ], 150),
+  ICY_REVERSE: animate([
+    new Sprite(tileset5reversed, 4*16, 9*16, 16, 16),
+    new Sprite(tileset5reversed, 3*16, 9*16, 16, 16),
+    new Sprite(tileset5reversed, 2*16, 9*16, 16, 16),
+    new Sprite(tileset5reversed, 1*16, 9*16, 16, 16),
+  ], 150),
   SKELETON: animate([
     new Sprite(tileset5, 23*16, 5*16, 16, 16),
     new Sprite(tileset5, 24*16, 5*16, 16, 16),
@@ -93,11 +105,46 @@ export const SpriteCollection = {
     new Sprite(tileset5, 26*16, 5*16, 16, 16),
   ], 150),
   SKELETON_REVERSE: animate([
-    // new Sprite(tileset5reversed, 9*16, 5*16, 16, 16),
     new Sprite(tileset5reversed, 8*16, 5*16, 16, 16),
     new Sprite(tileset5reversed, 7*16, 5*16, 16, 16),
     new Sprite(tileset5reversed, 6*16, 5*16, 16, 16),
     new Sprite(tileset5reversed, 5*16, 5*16, 16, 16),
+  ], 150),
+  ZOMBIE: animate([
+    new Sprite(tileset5, 23*16, 13*16, 16, 16),
+    new Sprite(tileset5, 24*16, 13*16, 16, 16),
+    new Sprite(tileset5, 25*16, 13*16, 16, 16),
+    new Sprite(tileset5, 26*16, 13*16, 16, 16),
+  ], 150),
+  ZOMBIE_REVERSE: animate([
+    new Sprite(tileset5reversed, 8*16, 13*16, 16, 16),
+    new Sprite(tileset5reversed, 7*16, 13*16, 16, 16),
+    new Sprite(tileset5reversed, 6*16, 13*16, 16, 16),
+    new Sprite(tileset5reversed, 5*16, 13*16, 16, 16),
+  ], 150),
+  DEMON: animate([
+    new Sprite(tileset5, 23*16, 17*16, 16, 16),
+    new Sprite(tileset5, 24*16, 17*16, 16, 16),
+    new Sprite(tileset5, 25*16, 17*16, 16, 16),
+    new Sprite(tileset5, 26*16, 17*16, 16, 16),
+  ], 150),
+  DEMON_REVERSE: animate([
+    new Sprite(tileset5reversed, 8*16, 17*16, 16, 16),
+    new Sprite(tileset5reversed, 7*16, 17*16, 16, 16),
+    new Sprite(tileset5reversed, 6*16, 17*16, 16, 16),
+    new Sprite(tileset5reversed, 5*16, 17*16, 16, 16),
+  ], 150),
+  ZOMBIE_SKULL: animate([
+    new Sprite(tileset5, 23*16, 11*16, 16, 16),
+    new Sprite(tileset5, 24*16, 11*16, 16, 16),
+    new Sprite(tileset5, 25*16, 11*16, 16, 16),
+    new Sprite(tileset5, 26*16, 11*16, 16, 16),
+  ], 150),
+  ZOMBIE_SKULL_REVERSE: animate([
+    new Sprite(tileset5reversed, 8*16, 11*16, 16, 16),
+    new Sprite(tileset5reversed, 7*16, 11*16, 16, 16),
+    new Sprite(tileset5reversed, 6*16, 11*16, 16, 16),
+    new Sprite(tileset5reversed, 5*16, 11*16, 16, 16),
   ], 150),
   WALL_TOP: [
     new Sprite(tileset, 16, 0, 16, 16),
@@ -132,7 +179,6 @@ export const SpriteCollection = {
     new Sprite(tileset, 9 * 16, 16 * 4, 16, 16),
     new Sprite(tileset, 9 * 16, 16 * 5, 16, 16),
   ],
-  LADDER: new Sprite(tileset, 9 * 16, 16 * 3, 16, 16),
   TORCH: animate([
     new Sprite(tileset3, 8 * 16, 9 * 16 + 8, 16, 16),
     new Sprite(tileset3, 9 * 16, 9 * 16 + 8, 16, 16),
@@ -142,7 +188,8 @@ export const SpriteCollection = {
     new Sprite(tileset3, 13 * 16, 9 * 16 + 8, 16, 16),
     new Sprite(tileset3, 14 * 16, 9 * 16 + 8, 16, 16),
     new Sprite(tileset3, 15 * 16, 9 * 16 + 8, 16, 16),
-  ], 300),
+  ], 150),
   KEY_SILVER: new Sprite(tileset, 8 * 16, 8 * 16, 16, 16),
   KEY_GOLDEN: new Sprite(tileset, 9 * 16, 9 * 16, 16, 16),
+  HEALTH_POTION: new Sprite(tileset5, 18*16, 14*16, 16, 16),
 }
