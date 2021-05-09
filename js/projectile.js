@@ -8,6 +8,8 @@ import Stones from './game/stones.js'
 import Enemy from './enemy.js'
 import { Sound, SoundCollection } from './sound.js';
 import Gravity from './enums/gravity.js';
+
+const hitSound = new Sound(SoundCollection.BASS_HIT, 0.5, false)
 export default class Projectile extends Rectangle {
   constructor(shooter, position, direction, background, damage, speed = 1)  {
     super(Config.BLOCK_SIZE / 6, Config.BLOCK_SIZE / 6, position, 'transparent')
@@ -19,7 +21,7 @@ export default class Projectile extends Rectangle {
     this.speed = speed
     this.background = background
 
-    this.hitSound = new Sound(SoundCollection.BASS_HIT, 0.5, false)
+    
     
     setTimeout(() => {
       GameInstance.projectiles.delete(this)
@@ -51,7 +53,7 @@ export default class Projectile extends Rectangle {
     if (collider.health <= 0) return
     if (collider === this.shooter) return
     if (collider instanceof LivingEntity) {
-      this.hitSound.play()
+      hitSound.play()
       collider.damage(this.damage)
       GameInstance.projectiles.delete(this)
     }
